@@ -1,8 +1,12 @@
 FROM alpine:3.4
-MAINTAINER Chris Dornsife <chris@applariat.com>
 
-RUN apk add --no-cache postfix rsyslog supervisor \
-    && /usr/bin/newaliases
+RUN apk add --no-cache \
+            ca-certificates \
+            libsasl \
+            postfix \
+            rsyslog \
+            supervisor
+RUN /usr/bin/newaliases
 
 COPY . /
 
