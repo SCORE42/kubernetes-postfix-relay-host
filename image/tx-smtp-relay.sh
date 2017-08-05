@@ -13,7 +13,9 @@ rm /etc/postfix/sasl_passwd || exit 1
 
 postconf 'smtp_sasl_auth_enable = yes' || exit 1
 postconf 'smtp_sasl_password_maps = hash:/etc/postfix/sasl_passwd' || exit 1
-postconf 'smtp_sasl_security_options =' || exit 1
+postconf 'smtp_sasl_security_options = noanonymous' || exit 1
+postconf 'smtp_use_tls = yes' || exit 1
+postconf 'smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt' || exit 1
 
 # These are required.
 postconf "relayhost = ${TX_SMTP_RELAY_HOST}" || exit 1
