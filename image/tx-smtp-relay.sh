@@ -21,8 +21,8 @@ postconf 'smtp_tls_CAfile = /etc/ssl/certs/ca-certificates.crt' || exit 1
 postconf "relayhost = ${TX_SMTP_RELAY_HOST}" || exit 1
 postconf "myhostname = ${TX_SMTP_RELAY_MYHOSTNAME}" || exit 1
 
-# Override what you want here. The 10. network is for kubernetes
-postconf 'mynetworks = 10.0.0.0/8,127.0.0.0/8,172.17.0.0/16' || exit 1
+# Override what you want here. The 10. network is for kubernetes and the 100. is for k8s services
+postconf 'mynetworks = 10.0.0.0/8,127.0.0.0/8,172.17.0.0/16,100.0.0.0/8' || exit 1
 
 # http://www.postfix.org/COMPATIBILITY_README.html#smtputf8_enable
 postconf 'smtputf8_enable = no' || exit 1
